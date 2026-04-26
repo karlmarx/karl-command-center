@@ -1,31 +1,14 @@
 import { NextResponse } from 'next/server';
-import Database from 'better-sqlite3';
-import path from 'path';
 
-const DB_PATH = path.join(process.cwd(), 'reminders.sqlite');
-
-function getDb() {
-  const db = new Database(DB_PATH);
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS reminders (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      text TEXT NOT NULL,
-      completed INTEGER DEFAULT 0,
-      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-  return db;
-}
+// In-memory mock for Vercel deployment (Vercel has read-only filesystem)
+let reminders = [
+  { id: 1, text: 'Analyze photo-memory catalog', completed: 0, createdAt: new Date().toISOString() },
+  { id: 2, text: 'Check command.93.fyi deployment', completed: 1, createdAt: new Date().toISOString() },
+  { id: 3, text: 'Gemma-4 local testing', completed: 0, createdAt: new Date().toISOString() }
+];
 
 export async function GET() {
-  try {
-    const db = getDb();
-    const reminders = db.prepare('SELECT * FROM reminders ORDER BY createdAt DESC').all();
-    return NextResponse.json(reminders);
-  } catch (error: any) {
-    console.error('Database error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
+  return NextResponse.json(reminders);
 }
 
 export async function POST(request: Request) {
@@ -35,11 +18,15 @@ export async function POST(request: Request) {
     if (!text) {
       return NextResponse.json({ error: 'Text is required' }, { status: 400 });
     }
-    const db = getDb();
-    const info = db.prepare('INSERT INTO reminders (text) VALUES (?)').run(text);
-    return NextResponse.json({ id: info.lastInsertRowid, text, completed: 0 });
+    const newReminder = {
+      id: Date.now(),
+      text,
+      completed: 0,
+      createdAt: new Date().toISOString()
+    };
+    reminders = [newReminder, ...reminders];
+    return NextResponse.json(newReminder);
   } catch (error: any) {
-    console.error('Database error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
@@ -48,8 +35,7 @@ export async function PATCH(request: Request) {
   try {
     const body = await request.json();
     const { id, completed } = body;
-    const db = getDb();
-    db.prepare('UPDATE reminders SET completed = ? WHERE id = ?').run(completed ? 1 : 0, id);
+    reminders = reminders.map(r => r.id === id ? { ...r, completed: completed ? 1 : 0 } : r);
     return NextResponse.json({ success: true });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -60,8 +46,7 @@ export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
-    const db = getDb();
-    db.prepare('DELETE FROM reminders WHERE id = ?').run(id);
+    reminders = reminders.filter(r => r.id.toString() !== id);
     return NextResponse.json({ success: true });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
