@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { Activity, AlertCircle, RefreshCw } from 'lucide-react';
+import VLMStatus from '@/components/VLMStatus';
 
 type Sub = {
   name: string;
@@ -124,7 +125,8 @@ export default function StatusGrid() {
         </div>
       </header>
 
-      <main className="flex-1 px-4 py-4 pb-[max(env(safe-area-inset-bottom),1rem)]">
+      <main className="flex-1 px-4 py-4 pb-[max(env(safe-area-inset-bottom),1rem)] space-y-2.5">
+        <VLMStatus />
         {error ? (
           <div className="flex items-center justify-center gap-2 py-12 text-red-400">
             <AlertCircle size={18} /> {error}
