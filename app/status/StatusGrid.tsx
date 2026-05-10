@@ -10,42 +10,49 @@ type Sub = {
   latency: number | null;
 };
 
-const SUBDOMAIN_META: Record<string, { icon: string; label: string }> = {
-  root: { icon: '🏠', label: '93.fyi (apex)' },
-  www: { icon: '🌐', label: 'WWW' },
-  command: { icon: '🎛️', label: 'Command Center' },
-  auto: { icon: '🗺️', label: 'Auto Map' },
-  progress: { icon: '📈', label: 'Progress' },
-  nfit: { icon: '💪', label: 'NWB Fitness' },
-  nyoga: { icon: '🧘', label: 'NWB Yoga' },
-  thumbfit: { icon: '👍', label: 'ThumbFit' },
-  thumbyoga: { icon: '🤸', label: 'ThumbYoga' },
-  ortho: { icon: '🦴', label: 'Ortho Appt' },
-  pwbpb: { icon: '🏓', label: 'PWB Pickleball' },
-  mom: { icon: '💌', label: "Mom's Hub" },
-  layover: { icon: '✈️', label: 'Layover' },
-  contact: { icon: '✉️', label: 'Contact' },
-  id: { icon: '🪪', label: 'Identity Verify' },
-  me: { icon: '👤', label: 'Me' },
-  login: { icon: '🔐', label: 'Login' },
-  todo: { icon: '☑️', label: 'Todo' },
-  now: { icon: '⏱️', label: 'Now' },
-  status: { icon: '🔔', label: 'Status' },
-  house: { icon: '🏠', label: 'House Tracker' },
-  ha: { icon: '🏡', label: 'Home Assistant' },
-  seed: { icon: '🌱', label: 'Seed' },
-  bedbug: { icon: '🪲', label: 'Bedbug' },
-  fake: { icon: '🎭', label: 'Fake' },
-  ta: { icon: '🛹', label: 'TrickAdvisor (legacy)' },
+// order: higher = higher in the grid. Tiers: 3 daily, 2 apps, 1 infra, 0 unknown, -1 legacy.
+// Within the same tier, items sort alphabetically by label.
+const SUBDOMAIN_META: Record<string, { icon: string; label: string; order: number }> = {
+  command:    { icon: '🎛️', label: 'Command Center', order: 3 },
+  nfit:       { icon: '💪', label: 'NWB Fitness', order: 3 },
+  nyoga:      { icon: '🧘', label: 'NWB Yoga', order: 3 },
+  ortho:      { icon: '🦴', label: 'Ortho Appt', order: 3 },
+  pwbpb:      { icon: '🏓', label: 'PWB Pickleball', order: 3 },
+  mom:        { icon: '💌', label: "Mom's Hub", order: 3 },
+  layover:    { icon: '✈️', label: 'Layover', order: 3 },
+
+  progress:   { icon: '📈', label: 'Progress', order: 2 },
+  auto:       { icon: '🗺️', label: 'Auto Map', order: 2 },
+  contact:    { icon: '✉️', label: 'Contact', order: 2 },
+  id:         { icon: '🪪', label: 'Identity Verify', order: 2 },
+
+  ha:         { icon: '🏡', label: 'Home Assistant', order: 1 },
+  house:      { icon: '🏠', label: 'House Tracker', order: 1 },
+  root:       { icon: '🏠', label: '93.fyi (apex)', order: 1 },
+  www:        { icon: '🌐', label: 'WWW', order: 1 },
+
+  me:         { icon: '👤', label: 'Me', order: 0 },
+  login:      { icon: '🔐', label: 'Login', order: 0 },
+  todo:       { icon: '☑️', label: 'Todo', order: 0 },
+  now:        { icon: '⏱️', label: 'Now', order: 0 },
+  status:     { icon: '🔔', label: 'Status', order: 0 },
+  seed:       { icon: '🌱', label: 'Seed', order: 0 },
+  thumbfit:   { icon: '👍', label: 'ThumbFit', order: 0 },
+  thumbyoga:  { icon: '🤸', label: 'ThumbYoga', order: 0 },
+
+  ta:         { icon: '🛹', label: 'TrickAdvisor (legacy)', order: -1 },
+  bedbug:     { icon: '🪲', label: 'Bedbug', order: -1 },
+  fake:       { icon: '🎭', label: 'Fake', order: -1 },
 };
 
-function getMeta(name: string): { icon: string; label: string } {
-  // dev.* prefixed records resolve to their parent's identity with a "(dev)" tag.
+function getMeta(name: string): { icon: string; label: string; order: number } {
+  // dev.* prefixed records resolve to their parent's identity with a "(dev)" tag,
+  // and one tier below the parent so dev versions cluster under prod.
   const isDev = name.startsWith('dev.');
   const key = isDev ? name.slice(4) : name;
   const m = SUBDOMAIN_META[key];
-  if (m) return { icon: m.icon, label: isDev ? `${m.label} (dev)` : m.label };
-  return { icon: '🌐', label: name };
+  if (m) return { icon: m.icon, label: isDev ? `${m.label} (dev)` : m.label, order: isDev ? m.order - 0.5 : m.order };
+  return { icon: '🌐', label: name, order: -2 };
 }
 
 export default function StatusGrid() {
@@ -124,9 +131,10 @@ export default function StatusGrid() {
           </div>
         ) : (
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-            {subs.map((s) => {
-              const meta = getMeta(s.name);
-              return (
+            {[...subs]
+              .map((s) => ({ s, meta: getMeta(s.name) }))
+              .sort((a, b) => b.meta.order - a.meta.order || a.meta.label.localeCompare(b.meta.label))
+              .map(({ s, meta }) => (
                 <li key={s.name}>
                   <a
                     href={s.url}
@@ -154,8 +162,7 @@ export default function StatusGrid() {
                     />
                   </a>
                 </li>
-              );
-            })}
+              ))}
             {loading && subs.length === 0 && (
               Array.from({ length: 6 }).map((_, i) => (
                 <li key={`skel-${i}`} className="h-[68px] rounded-xl bg-zinc-950 border border-zinc-900 animate-pulse" />
