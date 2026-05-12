@@ -77,12 +77,24 @@ export default function Home() {
             <CIStatus />
           </motion.div>
 
-          {/* Placeholder for future expansion */}
-          <motion.div 
-            variants={item}
-            className="bg-zinc-900/30 border border-zinc-800/50 border-dashed rounded-xl p-6 flex items-center justify-center text-zinc-700 min-h-[200px]"
-          >
-            <span className="text-sm italic">More modules coming soon...</span>
+          <motion.div variants={item}>
+            <a
+              href="/triage"
+              className="block bg-zinc-900/40 border border-zinc-800 hover:border-emerald-500/50 hover:bg-zinc-900/60 rounded-xl p-6 transition-colors min-h-[200px] flex flex-col justify-between"
+            >
+              <div>
+                <div className="text-xs uppercase tracking-wide text-emerald-400 mb-2">
+                  New
+                </div>
+                <div className="text-lg font-semibold text-zinc-100">
+                  Email Triage
+                </div>
+                <p className="text-sm text-zinc-500 mt-2">
+                  Mac-local runner triages Gmail via MCP. Allowlisted, budget-capped, writes to Supabase.
+                </p>
+              </div>
+              <div className="text-xs text-zinc-600 mt-4">Open dashboard →</div>
+            </a>
           </motion.div>
         </motion.div>
       </div>
