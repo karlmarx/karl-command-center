@@ -7,7 +7,8 @@ export async function createTask(args: {
   dueString?: string;
 }) {
   if (!TOKEN) throw new Error("TODOIST_TOKEN not configured");
-  const res = await fetch("https://api.todoist.com/rest/v2/tasks", {
+  // Todoist deprecated /rest/v2 in 2025; current task endpoint is /api/v1/tasks.
+  const res = await fetch("https://api.todoist.com/api/v1/tasks", {
     method: "POST",
     headers: {
       authorization: `Bearer ${TOKEN}`,
