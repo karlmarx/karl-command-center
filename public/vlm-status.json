@@ -1,5 +1,5 @@
 {
-  "ts": "2026-05-16T08:00:02",
+  "ts": "2026-05-16T09:00:02",
   "video_count": 3177,
   "gif_count": 30,
   "exercises": {
@@ -17,14 +17,14 @@
   "last_iteration": "--- Iteration 5 ---",
   "last_processed": "[07:03:29] Total videos processed: 3177",
   "last_log_mtime": "2026-05-16T07:03:29.181274",
-  "ram_available_gb": 16.47,
-  "ram_percent_used": 54.2,
+  "ram_available_gb": 12.26,
+  "ram_percent_used": 65.9,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-05-16T07:00:04"
+    "since": "2026-05-16T08:00:02"
   },
   "log_tail": [
     "[06:41:52] ",
