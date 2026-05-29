@@ -34,17 +34,20 @@ export async function lookupUserActivity(email: string) {
     );
   }
 
-  // Force a read-only session at the Postgres level. Even if the connection
-  // string carries a read/write role, any INSERT/UPDATE/DELETE on this
-  // connection fails with "cannot execute ... in a read-only transaction".
-  // statement_timeout caps a runaway/expensive query at 5s.
-  const client = new Client({
-    connectionString: URL,
-    options: "-c default_transaction_read_only=on -c statement_timeout=5000",
-  });
+  const client = new Client({ connectionString: URL });
   await client.connect();
   try {
+    // Enforce read-only at the transaction level. This is honored through
+    // Neon's pgbouncer regardless of pooling mode (unlike GUCs passed via the
+    // connection startup packet), so any INSERT/UPDATE/DELETE on this path
+    // fails with "cannot execute ... in a read-only transaction" even if the
+    // connection string carries a read/write role. SET LOCAL scopes the
+    // timeout to this transaction so a runaway query is capped at 5s.
+    await client.query("BEGIN TRANSACTION READ ONLY");
+    await client.query("SET LOCAL statement_timeout = 5000");
     const { rows } = await client.query(QUERY, [email]);
+    await client.query("COMMIT");
+
     const r = (rows[0] ?? {}) as {
       total_workouts?: number;
       last_workout_at_ms?: string | number | null;
@@ -62,6 +65,7 @@ export async function lookupUserActivity(email: string) {
       is_active_user: last30 > 0,
     };
   } finally {
+    // Closing the connection aborts the transaction if COMMIT was not reached.
     await client.end();
   }
 }
