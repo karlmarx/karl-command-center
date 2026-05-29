@@ -78,7 +78,7 @@ Same protocol, same agent loop pattern, just running on different sides of the w
 | `github_recent_merges` | GitHub REST | Yes (read-only) | Repo allowlist, 48h default window |
 | `todoist_create_task` | Todoist REST | No | Priority 1-4, natural-language due |
 | `twilio_send_urgent_sms` | Twilio REST | No (sends!) | <= 160 chars recommended |
-| `lookup_nwbfit_user_activity` | Neon Postgres | Yes (read-only) | Param-binding, no SQL injection, forced read-only session |
+| `lookup_nwbfit_user_activity` | Neon Postgres | Yes (read-only) | Param-binding, no SQL injection, runs in a read-only transaction |
 
 Gmail tools (`apply_label`, `draft_reply`) are NOT exposed here — they require
 the Gmail MCP server that lives on Karl's Mac, not on Vercel.
@@ -127,7 +127,7 @@ sequenceDiagram
 | `TWILIO_FROM` | Twilio number, E.164. |
 | `TWILIO_TO` | Karl's phone, E.164. |
 | `NWB_POSTGRES_READONLY_URL` | **Preferred.** Connection string for a dedicated read-only Neon role scoped to nwb-plan. Used by `lookup_nwbfit_user_activity`. |
-| `NWB_POSTGRES_URL` | Fallback for the nwbfit lookup when `NWB_POSTGRES_READONLY_URL` is unset. The session is forced read-only regardless (see threat model). |
+| `NWB_POSTGRES_URL` | Fallback for the nwbfit lookup when `NWB_POSTGRES_READONLY_URL` is unset. The query still runs in a read-only transaction (see threat model). |
 
 All secrets stay server-side. The `MCP_BEARER_TOKEN` is the only thing clients
 need to know — it gates the entire tool surface.
@@ -211,14 +211,15 @@ flowchart TD
 - **SQL injection:** `lookupUserActivity` uses parameterized binding. Even if
   the email arg contained `'; DROP TABLE workout_sessions; --`, pg passes it
   as a value, not as part of the query string.
-- **No write access to Neon:** the nwbfit lookup forces a read-only session
-  (`default_transaction_read_only=on`) plus a 5s `statement_timeout` on every
-  connection, so any INSERT/UPDATE/DELETE fails with *"cannot execute ... in a
-  read-only transaction"* even if the connection string carries a read/write
-  role. Belt-and-suspenders: set `NWB_POSTGRES_READONLY_URL` to a dedicated
-  read-only Neon role scoped to `workout_sessions` so the role can't write
-  either. The session guard means a misconfigured (read/write) `NWB_POSTGRES_URL`
-  fallback is still safe.
+- **No write access to Neon:** the nwbfit lookup runs inside an explicit
+  read-only transaction (`BEGIN TRANSACTION READ ONLY`) with a 5s
+  `SET LOCAL statement_timeout`, so any INSERT/UPDATE/DELETE fails with
+  *"cannot execute ... in a read-only transaction"* even if the connection
+  string carries a read/write role — and it's pooler-safe (honored through
+  Neon's pgbouncer in any pooling mode). Belt-and-suspenders: set
+  `NWB_POSTGRES_READONLY_URL` to a dedicated read-only Neon role scoped to
+  `workout_sessions`. The transaction guard means a misconfigured read/write
+  `NWB_POSTGRES_URL` fallback is still safe.
 
 ---
 
