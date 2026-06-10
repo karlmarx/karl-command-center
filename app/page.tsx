@@ -79,6 +79,26 @@ export default function Home() {
 
           <motion.div variants={item}>
             <a
+              href="/timeline"
+              className="block bg-zinc-900/40 border border-zinc-800 hover:border-amber-500/50 hover:bg-zinc-900/60 rounded-xl p-6 transition-colors min-h-[200px] flex flex-col justify-between"
+            >
+              <div>
+                <div className="text-xs uppercase tracking-wide text-amber-400 mb-2">
+                  New
+                </div>
+                <div className="text-lg font-semibold text-zinc-100">
+                  Timeline
+                </div>
+                <p className="text-sm text-zinc-500 mt-2">
+                  Unified feed of places, completed tasks, commits, and deploys — plus an AI-written daily story.
+                </p>
+              </div>
+              <div className="text-xs text-zinc-600 mt-4">Open timeline →</div>
+            </a>
+          </motion.div>
+
+          <motion.div variants={item}>
+            <a
               href="/triage"
               className="block bg-zinc-900/40 border border-zinc-800 hover:border-emerald-500/50 hover:bg-zinc-900/60 rounded-xl p-6 transition-colors min-h-[200px] flex flex-col justify-between"
             >
