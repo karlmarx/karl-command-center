@@ -1,5 +1,5 @@
 {
-  "ts": "2026-07-07T08:00:03",
+  "ts": "2026-07-07T09:00:07",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,32 +13,20 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "17d 18h 59m",
-  "last_iteration": "--- Iteration 4529 ---",
-  "last_processed": "[07:59:53] Total videos processed: 3219",
-  "last_log_mtime": "2026-07-07T07:59:53.421961",
-  "ram_available_gb": 21.7,
-  "ram_percent_used": 54.8,
+  "worker_uptime": "17d 19h 59m",
+  "last_iteration": "--- Iteration 4531 ---",
+  "last_processed": "[08:20:38] Total videos processed: 3219",
+  "last_log_mtime": "2026-07-07T08:20:38.699142",
+  "ram_available_gb": 21.61,
+  "ram_percent_used": 55.0,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-07-07T07:07:23"
+    "since": "2026-07-07T08:00:03"
   },
   "log_tail": [
-    "[07:16:42] ",
-    "--- Iteration 4525 ---",
-    "[07:16:42] No new candidates found (all 3216 already processed)",
-    "[07:16:42] Processed: 0 videos",
-    "[07:16:42] Total videos processed: 3219",
-    "[07:16:42] Sleeping 5 min before next batch...",
-    "[07:24:12] ",
-    "--- Iteration 4526 ---",
-    "[07:24:13] No new candidates found (all 3216 already processed)",
-    "[07:24:13] Processed: 0 videos",
-    "[07:24:13] Total videos processed: 3219",
-    "[07:24:13] Sleeping 5 min before next batch...",
     "[07:34:37] ",
     "--- Iteration 4527 ---",
     "[07:34:37] No new candidates found (all 3216 already processed)",
@@ -56,7 +44,19 @@
     "[07:59:53] No new candidates found (all 3216 already processed)",
     "[07:59:53] Processed: 0 videos",
     "[07:59:53] Total videos processed: 3219",
-    "[07:59:53] Sleeping 5 min before next batch..."
+    "[07:59:53] Sleeping 5 min before next batch...",
+    "[08:10:50] ",
+    "--- Iteration 4530 ---",
+    "[08:10:50] No new candidates found (all 3216 already processed)",
+    "[08:10:50] Processed: 0 videos",
+    "[08:10:50] Total videos processed: 3219",
+    "[08:10:50] Sleeping 5 min before next batch...",
+    "[08:20:38] ",
+    "--- Iteration 4531 ---",
+    "[08:20:38] No new candidates found (all 3216 already processed)",
+    "[08:20:38] Processed: 0 videos",
+    "[08:20:38] Total videos processed: 3219",
+    "[08:20:38] Sleeping 5 min before next batch..."
   ],
   "gallery_url": "https://hot.93.fyi/"
 }
