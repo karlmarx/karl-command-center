@@ -1,5 +1,5 @@
 {
-  "ts": "2026-07-18T05:05:14",
+  "ts": "2026-07-18T06:07:26",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,18 +13,18 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "28d 16h 4m",
+  "worker_uptime": "28d 17h 6m",
   "last_iteration": "--- Iteration 7136 ---",
   "last_processed": "[04:48:49] Total videos processed: 3219",
   "last_log_mtime": "2026-07-18T04:48:49.889870",
-  "ram_available_gb": 21.03,
-  "ram_percent_used": 56.2,
+  "ram_available_gb": 20.86,
+  "ram_percent_used": 56.5,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-07-18T04:00:03"
+    "since": "2026-07-18T05:05:14"
   },
   "log_tail": [
     "[04:00:24]        ERROR: <urlopen error [Errno 61] Connection refused>",
