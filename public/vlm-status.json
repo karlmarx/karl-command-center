@@ -1,5 +1,5 @@
 {
-  "ts": "2026-07-19T05:04:47",
+  "ts": "2026-07-19T06:05:45",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,26 +13,20 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "29d 16h 3m",
-  "last_iteration": "--- Iteration 7163 ---",
-  "last_processed": "[02:03:54] Total videos processed: 3219",
-  "last_log_mtime": "2026-07-19T02:03:54.370102",
-  "ram_available_gb": 23.81,
-  "ram_percent_used": 50.4,
+  "worker_uptime": "29d 17h 4m",
+  "last_iteration": "--- Iteration 7164 ---",
+  "last_processed": "[05:20:16] Total videos processed: 3219",
+  "last_log_mtime": "2026-07-19T05:20:16.467211",
+  "ram_available_gb": 24.07,
+  "ram_percent_used": 49.9,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-07-19T04:15:33"
+    "since": "2026-07-19T05:04:47"
   },
   "log_tail": [
-    "[21:20:20] ",
-    "--- Iteration 7159 ---",
-    "[21:20:20] No new candidates found (all 3216 already processed)",
-    "[21:20:20] Processed: 0 videos",
-    "[21:20:20] Total videos processed: 3219",
-    "[21:20:20] Sleeping 5 min before next batch...",
     "[21:25:20] ",
     "--- Iteration 7160 ---",
     "[21:25:20] No new candidates found (all 3216 already processed)",
@@ -56,7 +50,13 @@
     "[02:03:54] No new candidates found (all 3216 already processed)",
     "[02:03:54] Processed: 0 videos",
     "[02:03:54] Total videos processed: 3219",
-    "[02:03:54] Sleeping 5 min before next batch..."
+    "[02:03:54] Sleeping 5 min before next batch...",
+    "[05:20:16] ",
+    "--- Iteration 7164 ---",
+    "[05:20:16] No new candidates found (all 3216 already processed)",
+    "[05:20:16] Processed: 0 videos",
+    "[05:20:16] Total videos processed: 3219",
+    "[05:20:16] Sleeping 5 min before next batch..."
   ],
   "gallery_url": "https://hot.93.fyi/"
 }
