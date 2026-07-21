@@ -1,5 +1,5 @@
 {
-  "ts": "2026-07-21T07:49:57",
+  "ts": "2026-07-21T08:00:05",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,30 +13,20 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "31d 18h 49m",
-  "last_iteration": "--- Iteration 7587 ---",
-  "last_processed": "[03:31:40] Total videos processed: 3219",
-  "last_log_mtime": "2026-07-21T03:31:40.168134",
-  "ram_available_gb": 35.14,
-  "ram_percent_used": 26.8,
+  "worker_uptime": "31d 18h 59m",
+  "last_iteration": "--- Iteration 7588 ---",
+  "last_processed": "[07:55:33] Total videos processed: 3219",
+  "last_log_mtime": "2026-07-21T07:55:33.590089",
+  "ram_available_gb": 27.99,
+  "ram_percent_used": 41.7,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-07-21T03:00:04"
+    "since": "2026-07-21T07:49:57"
   },
   "log_tail": [
-    "[03:15:49]        ERROR: <urlopen error [Errno 61] Connection refused>",
-    "[03:15:49] Processed: 0 videos",
-    "[03:15:49] Total videos processed: 3219",
-    "[03:15:49] Sleeping 5 min before next batch...",
-    "[03:20:49] ",
-    "--- Iteration 7585 ---",
-    "[03:21:10] Queued 1 candidates for this batch (early-exit at limit=3)",
-    "[03:21:10]   [1/3] Processing PXL_20260705_224033872.mp4",
-    "[PXL_20260705_224033872.mp4] dur=20.1s  scene=0 fallback=4 -> 4 frames",
-    "[PXL_20260705_224033872.mp4] no audio track, skipping transcript",
     "[03:21:12]        ERROR: <urlopen error [Errno 61] Connection refused>",
     "[03:21:12] Processed: 0 videos",
     "[03:21:12] Total videos processed: 3219",
@@ -56,7 +46,17 @@
     "[03:31:40] No new candidates found (all 3216 already processed)",
     "[03:31:40] Processed: 0 videos",
     "[03:31:40] Total videos processed: 3219",
-    "[03:31:40] Sleeping 5 min before next batch..."
+    "[03:31:40] Sleeping 5 min before next batch...",
+    "[07:54:35] ",
+    "--- Iteration 7588 ---",
+    "[07:55:32] Queued 1 candidates for this batch (early-exit at limit=3)",
+    "[07:55:32]   [1/3] Processing PXL_20260705_224033872.mp4",
+    "[PXL_20260705_224033872.mp4] dur=20.1s  scene=0 fallback=4 -> 4 frames",
+    "[PXL_20260705_224033872.mp4] no audio track, skipping transcript",
+    "[07:55:33]        ERROR: <urlopen error [Errno 61] Connection refused>",
+    "[07:55:33] Processed: 0 videos",
+    "[07:55:33] Total videos processed: 3219",
+    "[07:55:33] Sleeping 5 min before next batch..."
   ],
   "gallery_url": "https://hot.93.fyi/"
 }
