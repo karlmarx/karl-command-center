@@ -1,5 +1,5 @@
 {
-  "ts": "2026-08-02T18:02:04",
+  "ts": "2026-08-02T19:09:01",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,26 +13,20 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "44d 5h 1m",
-  "last_iteration": "--- Iteration 10347 ---",
-  "last_processed": "[17:15:59] Total videos processed: 3219",
-  "last_log_mtime": "2026-08-02T17:15:59.826544",
-  "ram_available_gb": 21.36,
-  "ram_percent_used": 55.5,
+  "worker_uptime": "44d 6h 8m",
+  "last_iteration": "--- Iteration 10348 ---",
+  "last_processed": "[18:02:32] Total videos processed: 3219",
+  "last_log_mtime": "2026-08-02T18:02:32.807750",
+  "ram_available_gb": 21.44,
+  "ram_percent_used": 55.3,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-08-02T17:05:39"
+    "since": "2026-08-02T18:02:04"
   },
   "log_tail": [
-    "[15:08:51] Queued 1 candidates for this batch (early-exit at limit=3)",
-    "[15:08:51]   [1/3] Processing PXL_20260705_224033872.mp4",
-    "[PXL_20260705_224033872.mp4] dur=20.1s  scene=0 fallback=4 -> 4 frames",
-    "[PXL_20260705_224033872.mp4] no audio track, skipping transcript",
-    "[15:08:52]        ERROR: <urlopen error [Errno 61] Connection refused>",
-    "[15:08:52] Processed: 0 videos",
     "[15:08:52] Total videos processed: 3219",
     "[15:08:52] Sleeping 5 min before next batch...",
     "[15:13:52] ",
@@ -56,7 +50,13 @@
     "[17:15:59] No new candidates found (all 3216 already processed)",
     "[17:15:59] Processed: 0 videos",
     "[17:15:59] Total videos processed: 3219",
-    "[17:15:59] Sleeping 5 min before next batch..."
+    "[17:15:59] Sleeping 5 min before next batch...",
+    "[18:02:32] ",
+    "--- Iteration 10348 ---",
+    "[18:02:32] No new candidates found (all 3216 already processed)",
+    "[18:02:32] Processed: 0 videos",
+    "[18:02:32] Total videos processed: 3219",
+    "[18:02:32] Sleeping 5 min before next batch..."
   ],
   "gallery_url": "https://hot.93.fyi/"
 }
