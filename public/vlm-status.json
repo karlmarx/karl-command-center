@@ -1,5 +1,5 @@
 {
-  "ts": "2026-08-02T16:06:51",
+  "ts": "2026-08-02T17:05:39",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,26 +13,20 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "44d 3h 6m",
-  "last_iteration": "--- Iteration 10345 ---",
-  "last_processed": "[15:14:08] Total videos processed: 3219",
-  "last_log_mtime": "2026-08-02T15:14:08.013247",
-  "ram_available_gb": 21.23,
-  "ram_percent_used": 55.8,
+  "worker_uptime": "44d 4h 4m",
+  "last_iteration": "--- Iteration 10346 ---",
+  "last_processed": "[16:07:07] Total videos processed: 3219",
+  "last_log_mtime": "2026-08-02T16:07:07.178945",
+  "ram_available_gb": 21.11,
+  "ram_percent_used": 56.0,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-08-02T15:00:04"
+    "since": "2026-08-02T16:06:51"
   },
   "log_tail": [
-    "[15:03:22] ",
-    "--- Iteration 10343 ---",
-    "[15:03:36] Queued 1 candidates for this batch (early-exit at limit=3)",
-    "[15:03:36]   [1/3] Processing PXL_20260705_224033872.mp4",
-    "[PXL_20260705_224033872.mp4] dur=20.1s  scene=0 fallback=4 -> 4 frames",
-    "[PXL_20260705_224033872.mp4] no audio track, skipping transcript",
     "[15:03:37]        ERROR: <urlopen error [Errno 61] Connection refused>",
     "[15:03:37] Processed: 0 videos",
     "[15:03:37] Total videos processed: 3219",
@@ -56,7 +50,13 @@
     "[15:14:08]        ERROR: <urlopen error [Errno 61] Connection refused>",
     "[15:14:08] Processed: 0 videos",
     "[15:14:08] Total videos processed: 3219",
-    "[15:14:08] Sleeping 5 min before next batch..."
+    "[15:14:08] Sleeping 5 min before next batch...",
+    "[16:07:07] ",
+    "--- Iteration 10346 ---",
+    "[16:07:07] No new candidates found (all 3216 already processed)",
+    "[16:07:07] Processed: 0 videos",
+    "[16:07:07] Total videos processed: 3219",
+    "[16:07:07] Sleeping 5 min before next batch..."
   ],
   "gallery_url": "https://hot.93.fyi/"
 }
