@@ -1,5 +1,5 @@
 {
-  "ts": "2026-08-03T09:02:58",
+  "ts": "2026-08-03T10:02:34",
   "video_count": 3219,
   "gif_count": 30,
   "exercises": {
@@ -13,18 +13,18 @@
   "manifest_generated_at": "2026-07-04 10:10:50",
   "worker_running": true,
   "worker_pid": 1766,
-  "worker_uptime": "44d 20h 2m",
+  "worker_uptime": "44d 21h 1m",
   "last_iteration": "--- Iteration 10364 ---",
   "last_processed": "[07:12:32] Total videos processed: 3219",
   "last_log_mtime": "2026-08-03T07:12:32.801171",
-  "ram_available_gb": 21.09,
-  "ram_percent_used": 56.1,
+  "ram_available_gb": 21.01,
+  "ram_percent_used": 56.2,
   "delta": {
     "first_run": false,
     "videos_delta": 0,
     "gifs_delta": 0,
     "exercises_delta": {},
-    "since": "2026-08-03T08:02:43"
+    "since": "2026-08-03T09:02:58"
   },
   "log_tail": [
     "[21:57:42] ",
